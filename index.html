@@ -4,7 +4,7 @@
         <title>NiteLyfe</title>
         <meta charset="utf-8">
 <!--        <script src="hello.js"></script>-->
-        <script src="jslibs/jquery-3.2.1.min.js"></script>
+        <script src="/jslibs/jquery-3.2.1.min.js"></script>
         <script>
 //            function initAuth() {
 //                    hello.init({
@@ -34,7 +34,7 @@
 //            }
 //            function getContacts() {
 //                var object = jQuery.get( "https://graph.microsoft.com/v1.0/me/contacts" ,[ data ] ,[ success ] ,[ dataType ] );
-//                document.getElementById("results").value = object;   
+//                document.getElementById("results").value = object;
 //            }
             //Facebook
             function loadFB(){
@@ -55,18 +55,18 @@
                      js.src = "//connect.facebook.net/en_US/sdk.js";
                      fjs.parentNode.insertBefore(js, fjs);
                    }(document, 'script', 'facebook-jssdk'));
-                
+
             }
             function loginFB(){
                 FB.login(function(){}, {scope: 'publish_actions'});
             }
-                
+
         </script>
-        <link rel="stylesheet" type="text/css" href="external.css">
+        <link rel="stylesheet" type="text/css" href="/css/external.css">
         <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet">
     </head>
     <body onload="initAuth(), loadFB()">
-        <img src="nitelyfeScriptLogo.png" id="title">
+        <img src="/imgs/nitelyfeScriptLogo.png" id="title">
         <div id="aboutAppWrapper">
             <h2 id="aboutAppHeader">What does it do?</h2>
             <ul>
@@ -93,8 +93,8 @@
         <div>
             <h2>Download the App now on the App Store!</h2>
             <div id="download">
-                <img src="nytelyfeLogo.png" id="appLogo">
-                <a href="" id="link">Download Now!</a>
+                <img src="/imgs/nytelyfeLogo.png" id="appLogo">
+                <a href="#" id="link">Download Now!</a>
             </div>
         </div>
     </body>

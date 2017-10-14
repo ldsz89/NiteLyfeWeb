@@ -2,7 +2,7 @@ html{
     height: 100%;
 }
 body{
-    background-image: url(pexels-photo-311012.jpeg);
+    background-image: url(/imgs/pexels-photo-311012.jpeg);
     color: white;
 }
 
@@ -19,7 +19,7 @@ h1{
     font-size: 50px;
     font-style: italic;
     border-bottom: 2px solid black;
-    
+
 }
 
 h2 {
