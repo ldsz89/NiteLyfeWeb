@@ -52,7 +52,7 @@
                var js, fjs = d.getElementsByTagName(s)[0];
                if (d.getElementById(id)) {return;}
                js = d.createElement(s); js.id = id;
-               js.src = "//connect.facebook.net/en_US/sdk.js";
+               js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=307341646416455 63";
                fjs.parentNode.insertBefore(js, fjs);
              }(document, 'script', 'facebook-jssdk'));
             function loginFB(){
@@ -63,7 +63,8 @@
                     function (response) {
                       console.log("2");
                       if (response && !response.error) {
-                        console.log("this worked");
+                        console.log("Login worked");
+                        checkFacebookLogin();
                       }
                       if(response.error){
                         console.log(response.error);
@@ -71,13 +72,26 @@
                     }
                 );
               }, {scope: 'user_friends'});
+
             }
 
+            function checkFacebookLogin() {
+              FB.getLoginStatus(function(response) {
+                if(response.status === 'connected') {
+                  console.log("Status: Logined in");
+                  var xhr = new XMLHttpRequest();
+                  xhr.open('GET', 'me/taggable_friends?fields=first_name,picture', true);
+                  xhr.send();
+                  console.log(xhr.responseText);
+                }
+              });
+            };
         </script>
         <link rel="stylesheet" type="text/css" href="/css/external.css">
         <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet">
     </head>
     <body>
+        <div id="fb-root"></div>
         <img src="/imgs/nitelyfeScriptLogo.png" id="title">
         <div id="aboutAppWrapper">
             <h2 id="aboutAppHeader">What does it do?</h2>
@@ -94,7 +108,8 @@
             <p id="results"></p>
 -->
             <h3>Find people you are Facebook friends with!</h3>
-            <button onclick="loginFB()" class="loginButton">Find Them!</button>
+            <!-- <button onclick="loginFB()" class="loginButton">Find Them!</button> -->
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" scope="user_friends" onlogin="checkFacebookLogin();   "></div>
             <p id="resultsFB"></p>
         </div>
         <div>
