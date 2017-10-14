@@ -79,16 +79,19 @@
               FB.getLoginStatus(function(response) {
                 if(response.status === 'connected') {
                   console.log("Status: Logined in");
-                  var xhr = new XMLHttpRequest();
-                  xhr.open('GET', 'me/taggable_friends?fields=first_name,picture', true);
-                  xhr.send();
-                  console.log(xhr.responseText);
+                  var request = new XMLHttpRequest();
+                  if("withCredentials" in request) {
+                    request.open('GET', 'http://graph.facebook.com/me/taggable_friends?fields=first_name,picture, true');
+                    request.setRequestHeader('Content-Type', 'application/json');
+                    request.send();
+                    console.log(request.responseText);
+                  }
                 }
               });
             };
         </script>
         <link rel="stylesheet" type="text/css" href="/css/external.css">
-        <link href="https://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Nova+Flat" rel="stylesheet">
     </head>
     <body>
         <div id="fb-root"></div>
@@ -109,7 +112,7 @@
 -->
             <h3>Find people you are Facebook friends with!</h3>
             <!-- <button onclick="loginFB()" class="loginButton">Find Them!</button> -->
-            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" scope="user_friends" onlogin="checkFacebookLogin();   "></div>
+            <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" scope="user_friends" onlogin="checkFacebookLogin();"></div>
             <p id="resultsFB"></p>
         </div>
         <div>
